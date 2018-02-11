@@ -1,6 +1,6 @@
 ---
 applications:
 - name: first-java-maven-app
-  memory: 512M
+  memory: 1G
   host:  first-java-maven-app
   path: target/gs-spring-boot-0.1.0.jar
