@@ -3,7 +3,7 @@ node {
   stage("Preparation") { // for display purposes
     // Get some code from a GitHub repository
     git 'https://github.com/ghill1011/springboot.git'
-    mvnHome = tool 'M3'
+    mvnHome = tool 'Apache Maven'
   }
   stage('Build') {
     // Run the maven build
