@@ -4,9 +4,11 @@ import java.util.Arrays;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.Protocol;
 import argo.jdom.JsonRootNode;
 import argo.jdom.JsonNode;
 import argo.jdom.JdomParser;
+import argo.saj.InvalidSyntaxException;
 
 
 
@@ -20,7 +22,7 @@ public class PoolManager {
       if (vcap_services != null && vcap_services.length() > 0) {
 
         //parsing rediscloud credentials
-        JsonRootNode root = new JdomParser().parse(vcap_services);
+        JsonNode root = new JdomParser().parse(vcap_services);
         JsonNode redisCloudNode = root.getNode("redisCloud");
         JsonNode credentials = root.getNode("credentials");
 
