@@ -37,6 +37,11 @@
             <version>2.0.0</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.argo</groupId>
+            <artifactId>argo</artifactId>
+            <version>5.3</version>
+        </dependency>
     </dependencies>
 
     <properties>
