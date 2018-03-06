@@ -2,6 +2,8 @@ package hello;
 
 import java.util.Arrays;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 import static argo.jdom.JsonNodeFactories.*;
 import static argo.jdom.JsonNodeBuilders.*;
 
