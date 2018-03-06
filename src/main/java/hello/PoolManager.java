@@ -9,7 +9,7 @@ public class PoolManager {
   protected PoolManager() {
     try {
       String vcap_services = System.getenv("VCAP_SERVICES");
-      if (vcap_services != null && vcap_servcies.length() > 0) {
+      if (vcap_services != null && vcap_services.length() > 0) {
 
         //parsing rediscloud credentials
         JsonRootNode root = new JdomParser().parse(vcap_services);
