@@ -2,8 +2,12 @@ package hello;
 
 import java.util.Arrays;
 import redis.clients.jedis.Jedis;
+import static argo.jdom.JsonNodeFactories.*;
+import static argo.jdom.JsonNodeBuilders.*;
+
 
 public class PoolManager {
+  private static PoolManager instance = null;
   private JedisPool pool = null;
 
   protected PoolManager() {
