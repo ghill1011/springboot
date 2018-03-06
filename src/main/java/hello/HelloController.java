@@ -1,6 +1,7 @@
 package hello;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ public class HelloController {
     jedis.set("foo", "bar");
     String value = jedis.get("foo");
     pool.returnResource(jedis);
+    pool.close();
     return "Greetings from Gregg's first Spring Boot app running in PCF!\n"+value;
   }
 }
