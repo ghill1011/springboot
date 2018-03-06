@@ -5,7 +5,6 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.Protocol;
-import argo.jdom.JsonRootNode;
 import argo.jdom.JsonNode;
 import argo.jdom.JdomParser;
 import argo.saj.InvalidSyntaxException;
