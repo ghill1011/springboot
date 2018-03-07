@@ -23,7 +23,7 @@ public class PoolManager {
 
         //parsing rediscloud credentials
         JsonNode root = new JdomParser().parse(vcap_services);
-        JsonNode redisCloudNode = root.getNode("myredis");
+        JsonNode redisCloudNode = root.getNode("rediscloud");
         JsonNode credentials = root.getNode("credentials");
 
         pool = new JedisPool(new JedisPoolConfig(),
