@@ -18,12 +18,12 @@ public class PoolManager {
   PoolManager() {
     try {
       String vcap_services = System.getenv("VCAP_SERVICES");
-      System.out.println("VCAP_SERVICES = "+vcap_services);
+      //System.out.println("VCAP_SERVICES = "+vcap_services);
       if (vcap_services != null && vcap_services.length() > 0) {
 
         //parsing rediscloud credentials
         JsonNode root = new JdomParser().parse(vcap_services);
-        JsonNode redisCloudNode = root.getNode("redisCloud");
+        JsonNode redisCloudNode = root.getNode("myredis");
         JsonNode credentials = root.getNode("credentials");
 
         pool = new JedisPool(new JedisPoolConfig(),
