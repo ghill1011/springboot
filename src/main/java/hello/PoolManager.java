@@ -15,9 +15,10 @@ public class PoolManager {
   private static PoolManager instance = null;
   private JedisPool pool = null;
 
-  protected PoolManager() {
+  PoolManager() {
     try {
       String vcap_services = System.getenv("VCAP_SERVICES");
+      System.out.println("VCAP_SERVICES = "+vcap_services);
       if (vcap_services != null && vcap_services.length() > 0) {
 
         //parsing rediscloud credentials
@@ -36,13 +37,6 @@ public class PoolManager {
     }
   }
 
-  public static PoolManager getInstance() {
-    if (instance == null) {
-      System.out.println("creating new connection manager");
-      instance = new PoolManager();
-    }
-    return instance;
-  }
 
   public JedisPool getPool() {
     return pool;

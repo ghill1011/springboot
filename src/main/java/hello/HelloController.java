@@ -14,7 +14,8 @@ public class HelloController {
 
 
     String message = null;
-    JedisPool pool = PoolManager.getInstance().getPool();
+    PoolManager poolManager = new PoolManager();
+    JedisPool pool = poolManager.getPool();
     if (pool == null)  return "pool not set";
     Jedis jedis = pool.getResource();
     if (jedis == null)  return "jedis not set";
