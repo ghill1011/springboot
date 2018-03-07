@@ -12,8 +12,12 @@ public class HelloController {
   @RequestMapping("/")
   public String index() {
 
+
+    String message = null;
     JedisPool pool = PoolManager.getInstance().getPool();
+    if (pool == null)  return "pool not set";
     Jedis jedis = pool.getResource();
+    if (jedis == null)  return "jedis not set";
     jedis.set("foo", "bar");
     String value = jedis.get("foo");
     pool.returnResource(jedis);
