@@ -19,7 +19,7 @@ public class PoolManager {
   //try {
       String vcap_services = System.getenv("VCAP_SERVICES");
       if (vcap_services != null && vcap_services.length() > 0) {
-
+        System.out.println(vcap_services);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         RedisCloud rediscloud = gson.fromJson(vcap_services, RedisCloud.class);
         System.out.println(rediscloud);
