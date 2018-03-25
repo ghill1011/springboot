@@ -83,13 +83,12 @@ public class RedisCloud {
     sb.append("Name: "+getName()+"\n");
     sb.append("Instance Name: "+getInstanceName()+"\n");
     sb.append("Binding Name: "+getBindingName()+"\n");
-    sb.append("Volume Mounts: "+Arrays.toString(getVolumeMounts().toArray())+"\n");
+    //sb.append("Volume Mounts: "+Arrays.toString(getVolumeMounts().toArray())+"\n");
     sb.append("Label: "+getLabel()+"\n");
     sb.append("Provider: "+getProvider()+"\n");
     sb.append("Plan: "+getPlan()+"\n");
-    sb.append("Tags: "+Arrays.toString(getTags().toArray())+"\n");
+    //sb.append("Tags: "+Arrays.toString(getTags().toArray())+"\n");
 
-    return name+"-"+instance_name+"-"+binding_name+"-"+"("+credentials+")-"+
-    "("+volume_mounts+")-"+label+"-"+provider+"-"+plan+"-"+"("+tags+")";
+    return sb.toString();
   }
 }
