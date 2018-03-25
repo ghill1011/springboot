@@ -49,6 +49,9 @@ public class RedisCloud {
   public List<String> getVolumeMounts() {
     return volume_mounts;
   }
+  public void setVolumeMounts(List<String> volume_mounts) {
+    this.volume_mounts = volume_mounts;
+  }
   public void setLabel(String label) {
     this.label = label;
   }
@@ -70,7 +73,7 @@ public class RedisCloud {
   public List<String> getTags() {
     return tags;
   }
-  public void setTags(String tags) {
+  public void setTags(List<String> tags) {
     this.tags = tags;
   }
   @Override
