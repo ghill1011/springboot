@@ -10,18 +10,15 @@ import com.google.gson.GsonBuilder;
 
 
 
+
 public class PoolManager {
   private static PoolManager instance = null;
   private JedisPool pool = null;
 
   PoolManager() {
-    try {
+  //try {
       String vcap_services = System.getenv("VCAP_SERVICES");
-      //System.out.println("VCAP_SERVICES = "+vcap_services);
       if (vcap_services != null && vcap_services.length() > 0) {
-
-        //parsing rediscloud credentials
-        @Override
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         RedisCloud rediscloud = gson.fromJson(vcap_services, RedisCloud.class);
@@ -34,9 +31,9 @@ public class PoolManager {
                 rediscloud.getCredentials().getPassword());
 
       }
-    } catch (InvalidSyntaxException ex) {
+    /*} catch (InvalidSyntaxException ex) {
       //  need to log this exception ... the next thing to figure out.
-    }
+    }*/
   }
 
 
