@@ -21,8 +21,8 @@ public class PoolManager {
       if (vcap_services != null && vcap_services.length() > 0) {
         System.out.println(vcap_services);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        RedisCloud rediscloud = gson.fromJson(vcap_services, RedisCloud.class);
-        System.out.println(rediscloud);
+        VcapServices vcap = gson.fromJson(vcap_services, VcapServices.class);
+        System.out.println(vcap);
 
         pool = new JedisPool(new JedisPoolConfig(),
                 rediscloud.getCredentials().getHostName(),

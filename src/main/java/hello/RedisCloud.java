@@ -16,6 +16,7 @@ public class RedisCloud {
   private String instance_name;
   private String binding_name;
   private Credentials credentials;
+  private String syslog_drain_url;
   private List<String> volume_mounts; //ArrayList maybe?
   private String label;
   private String provider;
@@ -83,12 +84,18 @@ public class RedisCloud {
     sb.append("Name: "+getName()+"\n");
     sb.append("Instance Name: "+getInstanceName()+"\n");
     sb.append("Binding Name: "+getBindingName()+"\n");
-    //sb.append("Volume Mounts: "+Arrays.toString(getVolumeMounts().toArray())+"\n");
+    if (getCredentials() != null) {
+      sb.append("Credentials: "+getCredentials()+"\n");
+    }
+    if (getVolumeMounts() != null) {
+      sb.append("Volume Mounts: "+Arrays.toString(getVolumeMounts().toArray())+"\n");
+    }
     sb.append("Label: "+getLabel()+"\n");
     sb.append("Provider: "+getProvider()+"\n");
     sb.append("Plan: "+getPlan()+"\n");
-    //sb.append("Tags: "+Arrays.toString(getTags().toArray())+"\n");
-
+    if (getTags() != null) {
+      sb.append("Tags: "+Arrays.toString(getTags().toArray())+"\n");
+    }
     return sb.toString();
   }
 }
