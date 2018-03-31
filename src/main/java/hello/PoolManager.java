@@ -37,9 +37,6 @@ public class PoolManager {
                 Integer.parseInt(rc.getCredentials().getPort()),
                 Protocol.DEFAULT_TIMEOUT,
                 rc.getCredentials().getPassword());
-
-
-                        }
       }
   }
 
