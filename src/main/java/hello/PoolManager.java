@@ -16,24 +16,31 @@ public class PoolManager {
   private JedisPool pool = null;
 
   PoolManager() {
-  //try {
       String vcap_services = System.getenv("VCAP_SERVICES");
-      if (vcap_services != null && vcap_services.length() > 0) {
-        System.out.println(vcap_services);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        VcapServices vcap = gson.fromJson(vcap_services, VcapServices.class);
-        System.out.println(vcap);
+      if (vcap_services == null || vcap_services.length() <= 0) return;
+      System.out.println(vcap_services);
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      VcapServices vcap = gson.fromJson(vcap_services, VcapServices.class);
+      System.out.println(vcap);
+
+      RedisCloud[] rediscloud = vcap.getRedisCloud();
+/*
+        for (i=0;i<RedisCloud.length;i++) {
+          RedisCloud rc=RedisCloud[i];
+        }
+*/
+
+      for (RedisCloud rc:rediscloud) {
 
         pool = new JedisPool(new JedisPoolConfig(),
-                rediscloud.getCredentials().getHostName(),
-                Integer.parseInt(rediscloud.getCredentials().getPort()),
+                rc.getCredentials().getHostName(),
+                Integer.parseInt(rc.getCredentials().getPort()),
                 Protocol.DEFAULT_TIMEOUT,
-                rediscloud.getCredentials().getPassword());
+                rc.getCredentials().getPassword());
 
+
+                        }
       }
-    /*} catch (InvalidSyntaxException ex) {
-      //  need to log this exception ... the next thing to figure out.
-    }*/
   }
 
 
