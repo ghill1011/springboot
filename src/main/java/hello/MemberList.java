@@ -39,7 +39,7 @@ public class MemberList {
     Jedis jedis = poolManager.getJedis();
 
     // get the account list
-    List<String> list = jedis.lrange(partner+".accounts", 0, jedis.llen());
+    List<String> list = jedis.lrange(partner+".accounts", 0, jedis.llen(partner+".accounts"));
     String ml = "[";
     for (String item:list) {
       ml += item+",";
