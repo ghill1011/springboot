@@ -8,41 +8,37 @@ import redis.clients.jedis.Protocol;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
-
-
 public class PoolManager {
-  private static PoolManager instance = null;
   private JedisPool pool = null;
+  private Jedis jedis = null;
 
   PoolManager() {
       String vcap_services = System.getenv("VCAP_SERVICES");
-      if (vcap_services == null || vcap_services.length() <= 0) return;
-      System.out.println(vcap_services);
+      if (vcap_services == null || vcap_services.length() <= 0) return; // log it
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       VcapServices vcap = gson.fromJson(vcap_services, VcapServices.class);
-      System.out.println(vcap);
 
       RedisCloud[] rediscloud = vcap.getRedisCloud();
-/*
-        for (i=0;i<RedisCloud.length;i++) {
-          RedisCloud rc=RedisCloud[i];
-        }
-*/
 
       for (RedisCloud rc:rediscloud) {
-
         pool = new JedisPool(new JedisPoolConfig(),
                 rc.getCredentials().getHostName(),
                 Integer.parseInt(rc.getCredentials().getPort()),
                 Protocol.DEFAULT_TIMEOUT,
                 rc.getCredentials().getPassword());
+        break:  // I just want one.  Will change when needed
       }
+      if (pool == null)  return;
+      jedis = pool.getResource();
   }
 
+  public Jedis getJedis() {
+    return jedis;
+  }
 
-  public JedisPool getPool() {
-    return pool;
+  public void close() {
+    pool.returnResource(jedis);
+    pool.close();
   }
 
 }

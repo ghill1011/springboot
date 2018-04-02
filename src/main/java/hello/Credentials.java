@@ -1,9 +1,5 @@
 package hello;
 
-import java.lang.reflect.Type;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 public class Credentials {
   private String hostname;
   private String password;
