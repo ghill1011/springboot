@@ -47,6 +47,7 @@ public class MemberList {
     ml = ml.replaceAll(",+$",""); //trim trailing ","
     ml +="]";
     setMemberList(ml);
+    System.out.println(ml);
 
     // release the persistence connection
     poolManager.close();
