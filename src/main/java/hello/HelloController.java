@@ -1,8 +1,5 @@
 package hello;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +13,13 @@ public class HelloController {
   }
 
   @RequestMapping("/members/{partner}")
-  public Account[] getmembers(@PathVariable String partner) {//Rest Endpoint
+  public MemberList getmembers(@PathVariable String partner) {//Rest Endpoint
     MemberList ml = new MemberList();
     return ml;
   }
 
-  @RequestMapping("/seedmembers/{partner}")
-  public Account[] seedmembers(@PathVariable String partner) {//Rest Endpoint
+  @RequestMapping("/seedmembers")
+  public MemberList seedmembers() {//Rest Endpoint
     MemberList ml = new MemberList();
     return ml;
   }

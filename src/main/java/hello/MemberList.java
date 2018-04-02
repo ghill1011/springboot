@@ -1,5 +1,10 @@
 package hello;
 
+import java.util.List;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 public class MemberList {
   private String memberlist;
   private String partner;
@@ -35,7 +40,7 @@ public class MemberList {
 
     // get the account list
     List<String> list = jedis.lrange(partner+".accounts", 0, jedis.llen());
-    ml = "[";
+    String ml = "[";
     for (String item:list) {
       ml += item+",";
     }
