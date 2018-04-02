@@ -26,7 +26,7 @@ public class PoolManager {
                 Integer.parseInt(rc.getCredentials().getPort()),
                 Protocol.DEFAULT_TIMEOUT,
                 rc.getCredentials().getPassword());
-        break:  // I just want one.  Will change when needed
+        break; // I just want one.  Will change when needed
       }
       if (pool == null)  return;
       jedis = pool.getResource();
