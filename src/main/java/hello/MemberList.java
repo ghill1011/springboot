@@ -15,18 +15,20 @@ public class MemberList {
     Jedis jedis = poolManager.getJedis();
 
     // set the account list
-    jedis.lpush("BankOfAmerica", "1234567890123456789");
-    jedis.lpush("BankOfAmerica", "9123456789012345678");
-    jedis.lpush("BankOfAmerica", "8912345678901234567");
-    jedis.lpush("BankOfAmerica", "7891234567890123456");
-    jedis.lpush("BankOfAmerica", "6789123456789012345");
-    jedis.lpush("BankOfAmerica", "5678912345678901234");
-    jedis.lpush("BankOfAmerica", "4567891234567890123");
+    jedis.lpush("BankOfAmerica.members", "1234567890123456789");
+    jedis.lpush("BankOfAmerica.members", "9123456789012345678");
+    jedis.lpush("BankOfAmerica.members", "8912345678901234567");
+    jedis.lpush("BankOfAmerica.members", "7891234567890123456");
+    jedis.lpush("BankOfAmerica.members", "6789123456789012345");
+    jedis.lpush("BankOfAmerica.members", "5678912345678901234");
+    jedis.lpush("BankOfAmerica.members", "4567891234567890123");
 
-    jedis.lpush("Citibank", "1234567890123456789");
-    jedis.lpush("Citibank", "9123456789012345678");
-    jedis.lpush("Citibank", "8912345678901234567");
-    jedis.lpush("Citibank", "7891234567890123456");
+    jedis.lpush("Citibank.members", "1234567890123456789");
+    jedis.lpush("Citibank.members", "9123456789012345678");
+    jedis.lpush("Citibank.members", "8912345678901234567");
+    jedis.lpush("Citibank.members", "7891234567890123456");
+
+    System.out.println("Citibank member list length: "+jedis.llen("Citibank.members"));
 
     // release the persistence connection
     poolManager.close();
@@ -39,7 +41,7 @@ public class MemberList {
     Jedis jedis = poolManager.getJedis();
 
     // get the account list
-    List<String> list = jedis.lrange(partner+".accounts", 0, jedis.llen(partner+".accounts"));
+    List<String> list = jedis.lrange(partner+".accounts", 0, jedis.llen(partner+".members"));
     String ml = "[";
     for (String item:list) {
       ml += item+",";
