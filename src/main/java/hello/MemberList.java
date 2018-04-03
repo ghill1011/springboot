@@ -35,13 +35,14 @@ public class MemberList {
   }
 
   public MemberList(String partner) {
+    this.partner = partner;
 
     // get a connection to persistence
     PoolManager poolManager = new PoolManager();
     Jedis jedis = poolManager.getJedis();
 
     // get the account list
-    List<String> list = jedis.lrange(partner+".accounts", 0, jedis.llen(partner+".members"));
+    List<String> list = jedis.lrange(partner+".members", 0, jedis.llen(partner+".members"));
     String ml = "[";
     for (String item:list) {
       ml += item+",";
