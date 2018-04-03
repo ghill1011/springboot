@@ -14,7 +14,8 @@ public class HelloController {
 
   @RequestMapping("/members/{partner}")
   public MemberList getmembers(@PathVariable String partner) {//Rest Endpoint
-    MemberList ml = new MemberList();
+    System.out.println("**** calling MemberList("+partner+")");
+    MemberList ml = new MemberList(partner);
     return ml;
   }
 
