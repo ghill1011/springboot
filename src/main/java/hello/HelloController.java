@@ -22,7 +22,7 @@ public class HelloController {
   @RequestMapping(value = "/members/{partner}", method = RequestMethod.DELETE)
   public String deletePartner(@PathVariable String partner) {
     PartnerList pl = new PartnerList();
-    pl.deletePartner();
+    pl.deletePartner(partner);
     return "redirect:/items";
   }
   @RequestMapping("/seedmembers")
