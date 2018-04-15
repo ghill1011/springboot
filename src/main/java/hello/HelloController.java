@@ -14,11 +14,16 @@ public class HelloController {
 
   @RequestMapping("/members/{partner}")
   public MemberList getmembers(@PathVariable String partner) {//Rest Endpoint
-    System.out.println("**** calling MemberList("+partner+")");
+    //System.out.println("**** calling MemberList("+partner+")");
     MemberList ml = new MemberList(partner);
     return ml;
   }
-
+  @RequestMapping(value = "/members/{partner}", method = RequestMethod.DELETE)
+  public void deletePartner(@PathVariable String partner) {//Rest Endpoint
+    PartnerList pl = new PartnerList();
+    pl.deletePartner();
+    return;
+  }
   @RequestMapping("/seedmembers")
   public MemberList seedmembers() {//Rest Endpoint
     MemberList ml = new MemberList();
