@@ -7,7 +7,7 @@ import redis.clients.jedis.JedisPool;
 
 public class PartnerList {
   private String partnerlist;
-
+/*
   public PartnerList(String seed) {
     // get a connection to persistence
     PoolManager poolManager = new PoolManager();
@@ -21,7 +21,7 @@ public class PartnerList {
     poolManager.close();
   }
 
-  /*
+
   public Bank(String partner) {
     this.partner = partner;
 
