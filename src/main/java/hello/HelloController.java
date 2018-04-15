@@ -20,7 +20,7 @@ public class HelloController {
     return ml;
   }
   @RequestMapping(value = "/members/{partner}", method = RequestMethod.DELETE)
-  public void deletePartner(@PathVariable String partner) {//Rest Endpoint
+  public String deletePartner(@PathVariable String partner) {
     PartnerList pl = new PartnerList();
     pl.deletePartner();
     return "redirect:/items";

@@ -69,14 +69,5 @@ public class PartnerList {
     // release the persistence connection
     poolManager.close();
   }
-  public String getMemberList() {
-    return this.memberlist;
-  }
-  public void setPartner(String partner) {
-    this.partner = partner;
-  }
-  public String getPartner() {
-    return this.partner;
-  }
 
 }
