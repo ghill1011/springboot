@@ -22,7 +22,7 @@ public class HelloController {
   public void deletePartner(@PathVariable String partner) {//Rest Endpoint
     PartnerList pl = new PartnerList();
     pl.deletePartner();
-    return;
+    return "redirect:/items";
   }
   @RequestMapping("/seedmembers")
   public MemberList seedmembers() {//Rest Endpoint
