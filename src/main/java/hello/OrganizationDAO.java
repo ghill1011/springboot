@@ -27,7 +27,7 @@ public class OrganizationDAO {
     jedis.lpush("ogranizations", organization);
 
     poolManager.close();
-    retur
+    return;
   }
 
   public void delete(String organization) {
@@ -39,6 +39,7 @@ public class OrganizationDAO {
     jedis.lrem("ogranizations", 0, organization);
 
     poolManager.close();
+    return;
   }
 
 }
