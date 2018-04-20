@@ -1,5 +1,7 @@
 package hello;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,18 +15,38 @@ public class HelloController {
     return "Welcome to Gregg's Points Bank";
   }
 
-  @RequestMapping("/members/{partner}")
-  public MemberList getmembers(@PathVariable String partner) {//Rest Endpoint
-    //System.out.println("**** calling MemberList("+partner+")");
+  //get organizations
+  @RequestMapping(value = "/organizations", method = RequestMethod.GET)
+  public List<String> getOrganizations() {
+    List<String> list = OrganizationDAO.getAll();
+    return list;
+  }
+
+  //append a new organization to the organization list
+  @RequestMapping(value = "/organizations/{organization}", method = RequestMethod.POST)
+  public void insertOrganization(@PathVariable String organization) {
+    OrganizationDAO.insert(organization);
+    return;
+  }
+
+  @RequestMapping(value = "/organizations", method = RequestMethod.PUT)
+  public String notSupported() {
+    return "Put method is not supported";
+  }
+
+  @RequestMapping(value = "/{partner}/members", method = RequestMethod.GET)
+  public MemberList getmembers(@PathVariable String partner) {
     MemberList ml = new MemberList(partner);
     return ml;
   }
-  @RequestMapping(value = "/members/{partner}", method = RequestMethod.DELETE)
+
+  @RequestMapping(value = "/{partner}/members", method = RequestMethod.DELETE)
   public String deletePartner(@PathVariable String partner) {
     PartnerList pl = new PartnerList();
     pl.deletePartner(partner);
     return "redirect:/items";
   }
+
   @RequestMapping("/seedmembers")
   public MemberList seedmembers() {//Rest Endpoint
     MemberList ml = new MemberList();
