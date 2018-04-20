@@ -26,6 +26,8 @@ public class OrganizationDAO {
 
     jedis.lpush("ogranizations", organization);
 
+    System.out.println("\n**** inserting organization: "+organization+"\n");
+
     poolManager.close();
     return;
   }
