@@ -19,6 +19,8 @@ public class HelloController {
   @RequestMapping(value = "/organizations", method = RequestMethod.GET)
   public List<String> getOrganizations() {
     List<String> list = OrganizationDAO.getAll();
+    System.out.println("\n****LOG****\n");
+    System.out.println(list);
     return list;
   }
 
