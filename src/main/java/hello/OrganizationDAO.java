@@ -24,7 +24,7 @@ public class OrganizationDAO {
     PoolManager poolManager = new PoolManager();
     Jedis jedis = poolManager.getJedis();
 
-    jedis.lpush("ogranizations", organization);
+    jedis.lpush("organizations", organization);
 
     System.out.println("\n**** inserting organization: "+organization+"\n");
 
