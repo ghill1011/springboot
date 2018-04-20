@@ -20,7 +20,7 @@ public class OrganizationDAO {
     return list;
   }
 
-  public void insert(String organization) {
+  public static void insert(String organization) {
     PoolManager poolManager = new PoolManager();
     Jedis jedis = poolManager.getJedis();
 
@@ -30,7 +30,7 @@ public class OrganizationDAO {
     return;
   }
 
-  public void delete(String organization) {
+  public static void delete(String organization) {
     PoolManager poolManager = new PoolManager();
     Jedis jedis = poolManager.getJedis();
 
