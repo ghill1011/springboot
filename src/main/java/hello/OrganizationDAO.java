@@ -6,6 +6,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 public class OrganizationDAO {
+  public static final String key = "organizations";
 
   public static List<String> getAll() {
     // get a connection to jedis
@@ -13,7 +14,7 @@ public class OrganizationDAO {
     Jedis jedis = poolManager.getJedis();
 
     // get the list of organizations
-    List<String> list = jedis.lrange("organizations", 0, -1);
+    List<String> list = jedis.lrange(key, 0, -1);
 
     // release the jedis connection
     poolManager.close();
@@ -24,9 +25,7 @@ public class OrganizationDAO {
     PoolManager poolManager = new PoolManager();
     Jedis jedis = poolManager.getJedis();
 
-    jedis.lpush("organizations", organization);
-
-    System.out.println("\n**** inserting organization: "+organization+"\n");
+    jedis.lpush(key, organization);
 
     poolManager.close();
     return;
@@ -38,7 +37,7 @@ public class OrganizationDAO {
 
     // remove the members of the organization and the organization
     jedis.del(organization+".members");
-    jedis.lrem("ogranizations", 0, organization);
+    jedis.lrem(key, 0, organization);
 
     poolManager.close();
     return;
