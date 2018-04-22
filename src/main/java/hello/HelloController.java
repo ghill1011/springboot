@@ -56,21 +56,21 @@ public class HelloController {
 
   //add a member to an organization
   @RequestMapping(value = "/{organization}/members/{member}", method = RequestMethod.POST)
-  public List<String> getMembers(@PathVariable String organization, @PathVariable String member) {
+  public void getMembers(@PathVariable String organization, @PathVariable String member) {
     MemberDAO.insert(organization, member);
     return;
   }
 
   //delete a member from an organization
   @RequestMapping(value = "/{organization}/members/{member}", method = RequestMethod.DELETE)
-  public String deletePartner(@PathVariable String organization, @PathVariable String member) {
+  public void deletePartner(@PathVariable String organization, @PathVariable String member) {
     MemberDAO.delete(organization, member);
     return;
   }
 
   //get all members of the organization
   @RequestMapping(value = "/{organization}/members", method = RequestMethod.PUT)
-  public void replaceMembers(@PathVariable String organization) {
+  public String replaceMembers(@PathVariable String organization) {
     return "redirect:/notsupported";
   }
 

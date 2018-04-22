@@ -44,18 +44,7 @@ public class OrganizationList {
     poolManager.close();
   }
   */
-  public void getAll () {
-    // get a connection to persistence
-    PoolManager poolManager = new PoolManager();
-    Jedis jedis = poolManager.getJedis();
-
-    // add the organization to the list
-    jedis.lpush("ogranizations", organization);
-
-    // release the persistence connection
-    poolManager.close();
-  }
-
+  
   public void add (String organization) {
     // get a connection to persistence
     PoolManager poolManager = new PoolManager();
