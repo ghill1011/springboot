@@ -6,8 +6,8 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 public class OrganizationList {
-  private String organizations;
-/*
+  /*private String organizations;
+
   public PartnerList(String seed) {
     // get a connection to persistence
     PoolManager poolManager = new PoolManager();
@@ -22,7 +22,7 @@ public class OrganizationList {
   }
 
 
-  public Bank(String partner) {
+  public OrganizationList(String partner) {
     this.partner = partner;
 
     // get a connection to persistence
@@ -44,6 +44,17 @@ public class OrganizationList {
     poolManager.close();
   }
   */
+  public void getAll () {
+    // get a connection to persistence
+    PoolManager poolManager = new PoolManager();
+    Jedis jedis = poolManager.getJedis();
+
+    // add the organization to the list
+    jedis.lpush("ogranizations", organization);
+
+    // release the persistence connection
+    poolManager.close();
+  }
 
   public void add (String organization) {
     // get a connection to persistence

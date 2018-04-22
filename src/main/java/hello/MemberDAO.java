@@ -8,7 +8,7 @@ import redis.clients.jedis.JedisPool;
 public class MemberDAO {
   public static final String key = "members";
 
-  public static List<String> getAll(organization) {
+  public static List<String> getAll(String organization) {
     // get a connection to jedis
     PoolManager poolManager = new PoolManager();
     Jedis jedis = poolManager.getJedis();
