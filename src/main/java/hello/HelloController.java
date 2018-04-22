@@ -16,7 +16,7 @@ public class HelloController {
   }
 
   @RequestMapping("/notsupported")
-  public String index() {
+  public String notSupported() {
     return "sorry.  operation is not supported";
   }
 
