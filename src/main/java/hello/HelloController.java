@@ -15,12 +15,15 @@ public class HelloController {
     return "Welcome to Gregg's Points Bank";
   }
 
+  @RequestMapping("/notsupported")
+  public String index() {
+    return "sorry.  operation is not supported";
+  }
+
   //get organizations
   @RequestMapping(value = "/organizations", method = RequestMethod.GET)
   public List<String> getOrganizations() {
     List<String> list = OrganizationDAO.getAll();
-    System.out.println("\n****LOG****\n");
-    System.out.println(list);
     return list;
   }
 
@@ -31,27 +34,44 @@ public class HelloController {
     return;
   }
 
+  //append a new organization to the organization list
+  @RequestMapping(value = "/organizations/{organization}", method = RequestMethod.DELETE)
+  public void deleteOrganization(@PathVariable String organization) {
+    OrganizationDAO.delete(organization);
+    return;
+  }
+
+  //would replace the organizations list but we aren't going to do that.
   @RequestMapping(value = "/organizations", method = RequestMethod.PUT)
-  public String notSupported() {
-    return "Put method is not supported";
+  public String replaceOrganizations() {
+    return "redirect:/notsupported";
   }
 
-  @RequestMapping(value = "/{partner}/members", method = RequestMethod.GET)
-  public MemberList getmembers(@PathVariable String partner) {
-    MemberList ml = new MemberList(partner);
-    return ml;
+  //get all members of the organization
+  @RequestMapping(value = "/{organization}/members", method = RequestMethod.GET)
+  public List<String> getMembers(@PathVariable String organization) {
+    List<String> list = MemberDAO.getAll(organization);
+    return list;
   }
 
-  @RequestMapping(value = "/{partner}/members", method = RequestMethod.DELETE)
-  public String deletePartner(@PathVariable String partner) {
-    PartnerList pl = new PartnerList();
-    pl.deletePartner(partner);
-    return "redirect:/items";
+  //add a member to an organization
+  @RequestMapping(value = "/{organization}/members/{member}", method = RequestMethod.POST)
+  public List<String> getMembers(@PathVariable String organization, @PathVariable String member) {
+    MemberDAO.insert(organization, member);
+    return;
   }
 
-  @RequestMapping("/seedmembers")
-  public MemberList seedmembers() {//Rest Endpoint
-    MemberList ml = new MemberList();
-    return ml;
+  //delete a member from an organization
+  @RequestMapping(value = "/{organization}/members/{member}", method = RequestMethod.DELETE)
+  public String deletePartner(@PathVariable String organization, @PathVariable String member) {
+    MemberDAO.delete(organization, member);
+    return;
   }
+
+  //get all members of the organization
+  @RequestMapping(value = "/{organization}/members", method = RequestMethod.PUT)
+  public void replaceMembers(@PathVariable String organization) {
+    return "redirect:/notsupported";
+  }
+
 }
