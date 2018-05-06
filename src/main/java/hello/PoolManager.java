@@ -14,7 +14,7 @@ public class PoolManager {
 
   PoolManager() {
       String vcap_services = System.getenv("VCAP_SERVICES");
-      if (vcap_services == null || vcap_services.length() <= 0) return; // log it
+      if (vcap_services == null || vcap_services.length() <= 0) return; // you should log this
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       VcapServices vcap = gson.fromJson(vcap_services, VcapServices.class);
 
